@@ -45,7 +45,10 @@ public class Bird extends Pane {
 
     public void moveX(int value) {
         for (int i = 0; i < Math.abs(value); i++) {
-            setTranslateX(getTranslateX() + Math.abs(value)/value);
+            setTranslateX((getTranslateX() + Math.abs(value)/value) % 800);
+            if (getTranslateX() < -3){
+                setTranslateX(790 + getTranslateX());
+            }
             for (Platform platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40) {

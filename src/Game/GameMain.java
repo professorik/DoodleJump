@@ -111,10 +111,12 @@ public class GameMain extends Application {
 
         gameRoot.setPrefSize(WIDTH , HEIGHT);
 
-        Platform platform = new Platform(20);
-        platform.setTranslateX(250);
-        platform.setTranslateY(700);
-        platforms.add(platform);
+        for (int i = 0; i < 10; ++i) {
+            Platform platform = new Platform(20);
+            platform.setTranslateX(Math.random() * 900 + 30);
+            platform.setTranslateY(900 - i * Math.random() * 100);
+            platforms.add(platform);
+        }
 
         gameRoot.getChildren().addAll(platforms);
         gameRoot.getChildren().add(bird);
