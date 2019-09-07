@@ -37,7 +37,6 @@ public class GameMain extends Application {
 
     public static boolean isLose = false;
 
-    public static ArrayList<Wall> walls = new ArrayList<>();
     public static ArrayList<Platform> platforms = new ArrayList<>();
 
     public static int score = 0;
@@ -109,32 +108,12 @@ public class GameMain extends Application {
 
         gameRoot.setPrefSize(WIDTH , HEIGHT);
 
-        for (int i = 0; i < 100; i++) {
-            int enter = (int)(Math.random()*100 + 300);
-            int height = new Random().nextInt(WIDTH - enter);
-
-            Wall wall = new Wall(height);
-            wall.setTranslateX(i * X_ENTER + WIDTH);
-            wall.setTranslateY(height - WIDTH);
-            wall.setRotate(180);
-
-            walls.add(wall);
-
-            Wall wall1 = new Wall(WIDTH - height - enter);
-            wall1.setTranslateX(wall.getTranslateX());
-            wall1.setTranslateY(height + enter);
-
-            walls.add(wall1);
-        }
-
-
         Platform platform = new Platform(20);
         platform.setTranslateX(250);
         platform.setTranslateY(700);
         platforms.add(platform);
 
         gameRoot.getChildren().addAll(platforms);
-        gameRoot.getChildren().addAll(walls);
         gameRoot.getChildren().add(bird);
         label.setTranslateX(WIDTH/2 - 10); label.setTranslateY(HEIGHT/4 - 100);
         appRoot.getChildren().addAll(gameRoot, label);
@@ -201,7 +180,7 @@ public class GameMain extends Application {
         buttonRestart.setOnAction(event -> {
             appRoot = new Pane();
             gameRoot = new Pane();
-            walls.clear();
+            platforms.clear();
             score = 0;
             label = new Label("" + score);
             isLose = false;

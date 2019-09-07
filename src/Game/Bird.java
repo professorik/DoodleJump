@@ -64,12 +64,6 @@ public class Bird extends Pane {
                         setTranslateY(getTranslateY() - 1);
                         jump();
                     }
-                  /*  if (velocity.getX() < 0) {
-                        setTranslateX(getTranslateX() - 1);
-                        return;
-                    } else {
-                        setTranslateX(getTranslateX() + 1);
-                    }*/
                 }
             }
         }
