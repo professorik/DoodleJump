@@ -1,0 +1,12 @@
+.root{
+  -fx-background-image: url("/resources/background.png");
+}
+.label{
+  -fx-font-size: 60px;
+   -fx-font-weight: bold;
+}
+
+
+/*.label{
+    -fx-font-family: url("/sample/FB.woff");
+}*/
