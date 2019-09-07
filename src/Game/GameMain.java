@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main extends Application {
+public class GameMain extends Application {
 
     public static Pane appRoot = new Pane();
     public static Pane gameRoot = new Pane();

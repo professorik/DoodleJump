@@ -4,10 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import java.util.Date;
 
 public class Bird extends Pane {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -40,7 +37,7 @@ public class Bird extends Pane {
     public void moveY(int value) {
         boolean downMove = value > 0 ? true : false;
         for (int i = 0; i < Math.abs(value); i++) {
-            for (Platform platform : Main.platforms) {
+            for (Platform platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40) {
                         setTranslateY(getTranslateY() - 1);
@@ -51,8 +48,8 @@ public class Bird extends Pane {
             if (getTranslateY() < 0) {
                 setTranslateY(0);
             }
-            if (getTranslateY() > Main.HEIGHT - 20 - rectangle2.getImage().getHeight()/2) {
-                setTranslateY(Main.HEIGHT - 20 - rectangle2.getImage().getHeight()/2);
+            if (getTranslateY() > GameMain.HEIGHT - 20 - rectangle2.getImage().getHeight()/2) {
+                setTranslateY(GameMain.HEIGHT - 20 - rectangle2.getImage().getHeight()/2);
             }
             setTranslateY(getTranslateY() + (downMove ? 1 : -1));
         }
@@ -61,7 +58,7 @@ public class Bird extends Pane {
     public void moveX(int value) {
         for (int i = 0; i < Math.abs(value); i++) {
             setTranslateX(getTranslateX() + Math.abs(value)/value);
-            for (Platform platform : Main.platforms) {
+            for (Platform platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40) {
                         setTranslateY(getTranslateY() - 1);
