@@ -111,13 +111,14 @@ public class GameMain extends Application {
 
         gameRoot.setPrefSize(WIDTH , HEIGHT);
 
+        //TODO: вместо цикла вставлять блоки
         for (int i = 0; i < 10; ++i) {
             Platform platform = new Platform(20);
             platform.setTranslateX(Math.random() * 900 + 30);
             platform.setTranslateY(900 - i * Math.random() * 100);
             platforms.add(platform);
         }
-
+        //То как двигать сцену (нам нужно вниз) в строке №172 класса GameMain
         gameRoot.getChildren().addAll(platforms);
         gameRoot.getChildren().add(bird);
         label.setTranslateX(WIDTH/2 - 10); label.setTranslateY(HEIGHT/4 - 100);
