@@ -6,26 +6,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
+import java.util.Date;
+
 public class Bird extends Pane {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
 
     public Point2D velocity;
     private ImageView rectangle2;
 
-    private Circle circle;
-
-    private long x = 0;
-
     //TODO: доделать скелет
-
     public Bird() {
         velocity = new Point2D(0, 0);
         setTranslateX(300);
@@ -71,5 +59,6 @@ public class Bird extends Pane {
 
     public void jump() {
         velocity = new Point2D(0, -15);
+        GameMain.time = new Date();
     }
 }

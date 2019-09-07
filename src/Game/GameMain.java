@@ -20,6 +20,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -53,6 +54,8 @@ public class GameMain extends Application {
     boolean flag2 = false;
 
     private AnimationTimer animationTimer;
+
+    public static Date time = new Date();
 
     @Override
     public void start(Stage primaryStage){
@@ -146,7 +149,8 @@ public class GameMain extends Application {
         }else {
             if (bird.velocity.getY() < 5) {
                 //Скорость падения
-                bird.velocity = bird.velocity.add(0, 1);
+               // System.out.println((new Date().getTime() - time.getTime())/50);
+                bird.velocity = bird.velocity.add(0 , 1);
             }
             if (flag1) {
                 //Движение влево
@@ -160,7 +164,7 @@ public class GameMain extends Application {
             }
 
             bird.moveX((int) bird.velocity.getX());
-            bird.moveY((int) bird.velocity.getY());
+            bird.moveY((int) bird.velocity.getY() + (int)(new Date().getTime() - time.getTime())/100);
             label.setText("" + score);
            /* bird.translateXProperty().addListener((obs, old, newValue) -> {
                 int offset = newValue.intValue();
