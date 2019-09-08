@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -132,13 +133,16 @@ public class GameMain extends Application {
         //То как двигать сцену (нам нужно вниз) в строке №172 класса GameMain
         gameRoot.getChildren().addAll(platforms);
         gameRoot.getChildren().add(bird);
-        label.setTranslateX(WIDTH/2 - 10); label.setTranslateY(HEIGHT/4 - 100);
+        label.setTranslateX(WIDTH/2 - 10); label.setTranslateY(20);
         appRoot.getChildren().addAll(gameRoot, label);
         return appRoot;
     }
 
     public void update(){
-
+        if (new Date().getTime() - time.getTime() > 1500){
+            //TODO: все, что при лузе
+            System.out.println("LOSE");
+        }
         if (bird.velocity.getY() > distans)
             distans = bird.velocity.getY();
         if (bird.velocity.getY()>=distans) {
@@ -191,7 +195,8 @@ public class GameMain extends Application {
             bird.moveX((int) bird.velocity.getX());
             bird.moveY((int) bird.velocity.getY() + (int)(new Date().getTime() - time.getTime())/100);
             score = gameRoot.getTranslateY();
-            label.setText("" + score);
+            label.setText("" + (int)score);
+            label.setTranslateX(WIDTH/2 - 10 * label.getText().length());
            /* bird.translateXProperty().addListener((obs, old, newValue) -> {
                 int offset = newValue.intValue();
                 if (offset > 200) {

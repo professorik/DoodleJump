@@ -4,22 +4,25 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 
 import java.util.Date;
 
 public class Bird extends Pane {
 
     public Point2D velocity;
-    private ImageView rectangle2;
+    private ImageView rectangle;
 
     //TODO: доделать скелет
     public Bird() {
         velocity = new Point2D(0, 0);
         setTranslateX(370);
         setTranslateY(670);
-        rectangle2 = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
-        getChildren().addAll(rectangle2);
+        rectangle = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
+        getChildren().addAll(rectangle);
+    }
+
+    public ImageView getRectangle() {
+        return rectangle;
     }
 
     public void moveY(int value) {
@@ -36,8 +39,8 @@ public class Bird extends Pane {
             /*if (getTranslateY() < 0) {
                 setTranslateY(0);
             }*/
-            if (getTranslateY() > GameMain.HEIGHT - 20 - rectangle2.getImage().getHeight()/2) {
-                setTranslateY(GameMain.HEIGHT - 20 - rectangle2.getImage().getHeight()/2);
+            if (getTranslateY() > GameMain.HEIGHT - 20 - rectangle.getImage().getHeight()/2) {
+                setTranslateY(GameMain.HEIGHT - 20 - rectangle.getImage().getHeight()/2);
             }
             setTranslateY(getTranslateY() + (downMove ? 1 : -1));
         }
