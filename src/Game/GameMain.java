@@ -45,6 +45,7 @@ public class GameMain extends Application {
 
     private double platformsX;
     private double platformsY;
+    private double distans;
     //UI
     private Button buttonRestart;
     private Label scoreLose;
@@ -123,13 +124,15 @@ public class GameMain extends Application {
         }
         platformsX = 345;
         platformsY = 750;
-        for (int i = 1; i < 10; ++i) {
+        while (platformsY>-500){
             Platform platform = new Platform(20);
             platformsX = Math.random() * 656;
             platformsY = platformsY - (Math.random() * 180 + 30);
-            platform.setTranslateX(platformsX);
-            platform.setTranslateY(platformsY);
-            platforms.add(platform);
+            //if (platformsY>0) {
+                platform.setTranslateX(platformsX);
+                platform.setTranslateY(platformsY);
+                platforms.add(platform);
+            //}
         }
         //То как двигать сцену (нам нужно вниз) в строке №172 класса GameMain
         gameRoot.getChildren().addAll(platforms);
@@ -140,6 +143,17 @@ public class GameMain extends Application {
     }
 
     public void update(){
+
+        if (bird.velocity.getY() > distans)
+            distans = bird.velocity.getY();
+        if (bird.velocity.getY()>=distans) {
+            bird.translateYProperty().addListener((obs, old, newValue) -> {
+                int offset = newValue.intValue();
+                //if (offset < 400) {
+                    gameRoot.setTranslateY(-(offset - 400));
+                //}
+            });
+        }
         if (isLose){
             label.setVisible(false);
             scoreLose.setText(label.getText());
@@ -176,7 +190,7 @@ public class GameMain extends Application {
                 bird.velocity = bird.velocity.add(1, 0);
             }else {
                 //TODO: настроить коеффициент "затухания" объекта
-                bird.velocity = new Point2D(bird.velocity.getX() / 1.05 , bird.velocity.getY());
+                bird.velocity = new Point2D(bird.velocity.getX() / 1.05, bird.velocity.getY());
             }
 
             bird.moveX((int) bird.velocity.getX());
