@@ -119,7 +119,7 @@ public class GameMain extends Application {
         }
         platformsX = 345;
         platformsY = 750;
-        while (platformsY>-3000){
+        while (platformsY>-30000){
             Platform platform = new Platform(20);
             platformsX = Math.random() * 656;
             platformsY = platformsY - (Math.random() * 180 + 30);
@@ -145,7 +145,7 @@ public class GameMain extends Application {
             bird.translateYProperty().addListener((obs, old, newValue) -> {
                 int offset = newValue.intValue();
                 //if (offset < 400) {
-                    gameRoot.setTranslateY(-(offset - 400));
+                    gameRoot.setTranslateY(Math.max(-(offset - 400), gameRoot.getTranslateY()));
                 //}
             });
         }
