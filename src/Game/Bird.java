@@ -16,8 +16,8 @@ public class Bird extends Pane {
     //TODO: доделать скелет
     public Bird() {
         velocity = new Point2D(0, 0);
-        setTranslateX(300);
-        setTranslateY(100);
+        setTranslateX(370);
+        setTranslateY(670);
         rectangle2 = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
         getChildren().addAll(rectangle2);
     }

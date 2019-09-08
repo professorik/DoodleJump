@@ -43,6 +43,8 @@ public class GameMain extends Application {
     public static int score = 0;
     public Label label = new Label("" + score);
 
+    private double platformsX;
+    private double platformsY;
     //UI
     private Button buttonRestart;
     private Label scoreLose;
@@ -112,10 +114,21 @@ public class GameMain extends Application {
         gameRoot.setPrefSize(WIDTH , HEIGHT);
 
         //TODO: вместо цикла вставлять блоки
-        for (int i = 0; i < 10; ++i) {
+
+        for (int i = 0; i < 1; ++i) {
             Platform platform = new Platform(20);
-            platform.setTranslateX(Math.random() * 900 + 30);
-            platform.setTranslateY(900 - i * Math.random() * 100);
+            platform.setTranslateX(345);
+            platform.setTranslateY(750);
+            platforms.add(platform);
+        }
+        platformsX = 345;
+        platformsY = 750;
+        for (int i = 1; i < 10; ++i) {
+            Platform platform = new Platform(20);
+            platformsX = Math.random() * 658;
+            platformsY = platformsY - (Math.random() * 180 + 30);
+            platform.setTranslateX(platformsX);
+            platform.setTranslateY(platformsY);
             platforms.add(platform);
         }
         //То как двигать сцену (нам нужно вниз) в строке №172 класса GameMain
@@ -153,7 +166,7 @@ public class GameMain extends Application {
             if (bird.velocity.getY() < 5) {
                 //Скорость падения
                // System.out.println((new Date().getTime() - time.getTime())/50);
-                bird.velocity = bird.velocity.add(0 , 1);
+                bird.velocity = bird.velocity.add(0 , 0.3);
             }
             if (flag1) {
                 //Движение влево
