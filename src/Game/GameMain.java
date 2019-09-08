@@ -125,7 +125,7 @@ public class GameMain extends Application {
         platformsY = 750;
         for (int i = 1; i < 10; ++i) {
             Platform platform = new Platform(20);
-            platformsX = Math.random() * 658;
+            platformsX = Math.random() * 656;
             platformsY = platformsY - (Math.random() * 180 + 30);
             platform.setTranslateX(platformsX);
             platform.setTranslateY(platformsY);
