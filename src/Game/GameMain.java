@@ -72,12 +72,8 @@ public class GameMain extends Application {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.A){
                     flag1 = true; flag2 = false;
-                   // bird.velocity = new Point2D(-30 , bird.velocity.getY());
-                   // bird.moveX((int) bird.velocity.getX());
                 }else if (event.getCode() == KeyCode.D){
                     flag2 = true; flag1 = false;
-                   // bird.velocity = new Point2D(30 , bird.velocity.getY());
-                   // bird.moveX((int) bird.velocity.getX());
                 }else if (event.getCode() == KeyCode.SPACE){
                     bird.jump();
                 }
@@ -115,7 +111,6 @@ public class GameMain extends Application {
         gameRoot.setPrefSize(WIDTH , HEIGHT);
 
         //TODO: вместо цикла вставлять блоки
-
         for (int i = 0; i < 1; ++i) {
             Platform platform = new Platform(20);
             platform.setTranslateX(345);

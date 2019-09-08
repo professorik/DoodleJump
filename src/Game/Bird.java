@@ -33,9 +33,9 @@ public class Bird extends Pane {
                     }
                 }
             }
-            if (getTranslateY() < 0) {
+            /*if (getTranslateY() < 0) {
                 setTranslateY(0);
-            }
+            }*/
             if (getTranslateY() > GameMain.HEIGHT - 20 - rectangle2.getImage().getHeight()/2) {
                 setTranslateY(GameMain.HEIGHT - 20 - rectangle2.getImage().getHeight()/2);
             }
