@@ -4,7 +4,6 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +19,10 @@ import javafx.stage.Stage;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 
 public class GameMain extends Application {
 
@@ -86,7 +88,7 @@ public class GameMain extends Application {
         });
 
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Floppy Bird!");
+        primaryStage.setTitle("Doodle Jump");
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -138,7 +140,7 @@ public class GameMain extends Application {
     public void update(){
         if (new Date().getTime() - time.getTime() > 1500){
             //TODO: все, что при лузе
-            System.out.println("LOSE");
+            isLose = true;
         }
         if (bird.velocity.getY() > distans)
             distans = bird.velocity.getY();
@@ -150,7 +152,6 @@ public class GameMain extends Application {
                 //}
             });
         }
-        platforms.get(0).setTranslateX(0.001);
         if (isLose){
             label.setVisible(false);
             scoreLose.setText(label.getText());
@@ -162,9 +163,9 @@ public class GameMain extends Application {
                 String bestScoreInt = scanner.hasNext()? scanner.nextLine(): "";
                 bestScore.setText(bestScoreInt);
                 fr.close();
-                if (score > Integer.valueOf(bestScoreInt)){
+                if (score > new BigDecimal(bestScoreInt).longValue()){
                     FileWriter fw = new FileWriter("src/best_result.txt");
-                    fw.write(String.valueOf(score));
+                    fw.write(String.valueOf((int)score));
                     fw.close();
                 }
             } catch (IOException e) {
@@ -195,14 +196,10 @@ public class GameMain extends Application {
             score = gameRoot.getTranslateY();
             label.setText("" + (int)score);
             label.setTranslateX(WIDTH/2 - 10 * label.getText().length());
-           /* bird.translateXProperty().addListener((obs, old, newValue) -> {
-                int offset = newValue.intValue();
-                if (offset > 200) {
-                    gameRoot.setTranslateX(-(offset - 200));
-                }
-            });*/
         }
     }
+
+    AnimationTimer menuAnim;
 
     private void initUILoseElem(Stage primaryStage){
         Image imageRestart = new Image("/resources/restart.png");
@@ -219,12 +216,29 @@ public class GameMain extends Application {
             isLose = false;
             bird = new Bird();
             UI_lose = new Group();
+            distans = 0;
+
             Scene scene = new Scene(getGameRoom());
             scene.getStylesheets().addAll(this.getClass().getResource("/styles/style.css").toExternalForm());
             scene.setOnMouseClicked(event2 -> bird.jump());
+            scene.setOnKeyPressed(event1 -> {
+                if (event1.getCode() == KeyCode.A){
+                    flag1 = true; flag2 = false;
+                }else if (event1.getCode() == KeyCode.D){
+                    flag2 = true; flag1 = false;
+                }else if (event1.getCode() == KeyCode.SPACE){
+                    bird.jump();
+                }
+            });
+            scene.setOnKeyReleased(event12 -> {
+                flag1 = false;
+                flag2 = false;
+            });
+
             primaryStage.setScene(scene);
-            initUILoseElem(primaryStage);
+          //  initUILoseElem(primaryStage);
             appRoot.getChildren().addAll(UI_lose);
+            time = new Date();
             animationTimer.start();
         });
         imageView = new ImageView("/resources/score.png");
@@ -232,6 +246,22 @@ public class GameMain extends Application {
         imageView.setTranslateY(HEIGHT/2 - 1.3*imageView.getImage().getHeight());
         scoreLose = new Label(); scoreLose.setTranslateX(WIDTH/2 - 10); scoreLose.setTranslateY(HEIGHT/4 - 30);
         bestScore = new Label(); bestScore.setTranslateX(WIDTH/2 - 20); bestScore.setTranslateY(HEIGHT/2 - 160);
+        time = new Date();
+        menuAnim = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+            //    loseMenuAnim();
+            }
+        };
+        menuAnim.start();
+    }
+
+    private void loseMenuAnim(){
+        if (buttonRestart.getTranslateY() > HEIGHT/2) {
+            buttonRestart.setTranslateY(buttonRestart.getTranslateY() - 1);
+        }else{
+            menuAnim.stop();
+        }
     }
 
     public static void main(String[] args) {
