@@ -40,7 +40,7 @@ public class GameMain extends Application {
 
     public static ArrayList<Platform> platforms = new ArrayList<>();
 
-    public static int score = 0;
+    public static double score = 0;
     public Label label = new Label("" + score);
 
     private double platformsX;
@@ -190,6 +190,7 @@ public class GameMain extends Application {
 
             bird.moveX((int) bird.velocity.getX());
             bird.moveY((int) bird.velocity.getY() + (int)(new Date().getTime() - time.getTime())/100);
+            score = gameRoot.getTranslateY();
             label.setText("" + score);
            /* bird.translateXProperty().addListener((obs, old, newValue) -> {
                 int offset = newValue.intValue();
