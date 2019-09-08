@@ -1,5 +1,6 @@
 package Game;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -10,10 +11,26 @@ public class Platform extends Pane {
     public int height;
     public ImageView imageView;
 
-    public Platform(int height) {
+    public Platform(int height, boolean isMotion) {
         this.height = height;
         rectangle = new Rectangle(100 , 20);
         imageView = new ImageView(new Image("/resources/restart.png", 100 , 80 , true ,true, false));
         getChildren().add(imageView);
+        if (isMotion){
+            AnimationTimer animationTimer;
+            final int[] k = {1};
+            animationTimer = new AnimationTimer() {
+                @Override
+                public void handle(long now) {
+                    if (getTranslateX() > GameMain.WIDTH - imageView.getImage().getWidth()){
+                        k[0] = -1;
+                    }else if (getTranslateX() < 0){
+                        k[0] = 1;
+                    }
+                    setTranslateX(getTranslateX() + k[0] * 1);
+                }
+            };
+            animationTimer.start();
+        }
     }
 }
