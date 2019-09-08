@@ -112,7 +112,7 @@ public class GameMain extends Application {
 
         //TODO: вместо цикла вставлять блоки
         for (int i = 0; i < 1; ++i) {
-            Platform platform = new Platform(20);
+            Platform platform = new Platform(20, true);
             platform.setTranslateX(345);
             platform.setTranslateY(750);
             platforms.add(platform);
@@ -120,7 +120,7 @@ public class GameMain extends Application {
         platformsX = 345;
         platformsY = 750;
         while (platformsY>-30000){
-            Platform platform = new Platform(20);
+            Platform platform = new Platform(20, Math.random()*10 > 5);
             platformsX = Math.random() * 656;
             platformsY = platformsY - (Math.random() * 180 + 30);
             //if (platformsY>0) {
@@ -129,8 +129,11 @@ public class GameMain extends Application {
                 platforms.add(platform);
             //}
         }
+       // MotionPlatform motionPlatform = new MotionPlatform(20);
+      //  motionPlatform.setTranslateX(0); motionPlatform.setTranslateY(500);
         //То как двигать сцену (нам нужно вниз) в строке №172 класса GameMain
         gameRoot.getChildren().addAll(platforms);
+       // gameRoot.getChildren().add(motionPlatform);
         gameRoot.getChildren().add(bird);
         label.setTranslateX(WIDTH/2 - 10); label.setTranslateY(20);
         appRoot.getChildren().addAll(gameRoot, label);
