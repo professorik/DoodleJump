@@ -119,7 +119,7 @@ public class GameMain extends Application {
         }
         platformsX = 345;
         platformsY = 750;
-        while (platformsY>-500){
+        while (platformsY>-3000){
             Platform platform = new Platform(20);
             platformsX = Math.random() * 656;
             platformsY = platformsY - (Math.random() * 180 + 30);
