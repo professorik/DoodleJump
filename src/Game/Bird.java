@@ -28,10 +28,12 @@ public class Bird extends Pane {
     public void moveY(int value) {
         boolean downMove = value > 0 ? true : false;
         for (int i = 0; i < Math.abs(value); i++) {
+            //System.out.println(this.velocity.getY());
             for (Platform platform : GameMain.platforms) {
-                if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
-                    if (this.getTranslateY() < platform.getTranslateY() - 40) {
-                        setTranslateY(getTranslateY() - 1);
+                if (this.getBoundsInParent().intersects(platform.getBoundsInParent()) ) {
+                    if (this.getTranslateY() < platform.getTranslateY() - 40 && value > 2 /* && this.getTranslateX() > platform.getTranslateX()
+                            && this.getTranslateX() < platform.getTranslateX() + platform.imageView.getImage().getWidth()*/) {
+                        //setTranslateY(getTranslateY() - 1);
                         jump();
                     }
                 }
