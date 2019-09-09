@@ -38,12 +38,6 @@ public class Bird extends Pane {
                     }
                 }
             }
-            /*if (getTranslateY() < 0) {
-                setTranslateY(0);
-            }*/
-            if (getTranslateY() > GameMain.HEIGHT - 20 - rectangle.getImage().getHeight()/2) {
-                setTranslateY(GameMain.HEIGHT - 20 - rectangle.getImage().getHeight()/2);
-            }
             setTranslateY(getTranslateY() + (downMove ? 1 : -1));
         }
     }
@@ -58,7 +52,7 @@ public class Bird extends Pane {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40) {
                         setTranslateY(getTranslateY() - 1);
-                        jump();
+                       // jump();
                     }
                 }
             }
