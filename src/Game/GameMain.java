@@ -56,6 +56,9 @@ public class GameMain extends Application {
     boolean flag1 = false;
     boolean flag2 = false;
 
+
+    private static final double speedH = 0.6;
+
     private AnimationTimer animationTimer;
 
     public static Date time = new Date();
@@ -186,10 +189,10 @@ public class GameMain extends Application {
             }
             if (flag1) {
                 //Движение влево
-                bird.velocity = bird.velocity.add(-1, 0);
+                bird.velocity = bird.velocity.add(-speedH, 0);
             }else if (flag2){
                 //Движение вправо
-                bird.velocity = bird.velocity.add(1, 0);
+                bird.velocity = bird.velocity.add(speedH, 0);
             }else {
                 //TODO: настроить коеффициент "затухания" объекта
                 bird.velocity = new Point2D(bird.velocity.getX() / 1.05, bird.velocity.getY());
