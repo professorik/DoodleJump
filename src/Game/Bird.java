@@ -54,7 +54,7 @@ public class Bird extends Pane {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40 && GameMain.jp == false) {
                         setTranslateY(getTranslateY() - 1);
-                       //// jump();
+                       // jump();
                     }
                 }
             }
