@@ -14,7 +14,7 @@ public class Platform extends Pane {
     public Platform(int height, boolean isMotion) {
         this.height = height;
         rectangle = new Rectangle(100 , 20);
-        imageView = new ImageView(new Image("/resources/restart.png", 100 , 80 , true ,true, false));
+        imageView = new ImageView(new Image("/resources/block.png", 100 , 80 , true ,true, false));
         getChildren().add(imageView);
         if (isMotion){
             AnimationTimer animationTimer;
