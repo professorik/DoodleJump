@@ -107,7 +107,6 @@ public class GameMain extends Application {
     }
 
     private Parent getGameRoom() {
-
         gameRoot.setPrefSize(WIDTH , HEIGHT);
 
         //TODO: вместо цикла вставлять блоки
@@ -141,6 +140,8 @@ public class GameMain extends Application {
     }
 
     public void update(){
+        //clearPlatfroms();
+
         if (new Date().getTime() - time.getTime() > 1500){
             //TODO: все, что при лузе
             isLose = true;
@@ -265,6 +266,25 @@ public class GameMain extends Application {
         }else{
             menuAnim.stop();
         }
+    }
+
+
+    //FIXME: ДЛЯ ДИМОНА
+    private void clearPlatfroms(){
+        for (int i = 0 ; i < platforms.size(); ++i){
+            if (gameRoot.getTranslateY() + platforms.get(i).getTranslateY() > HEIGHT){
+                platforms.remove(i);
+            }
+        }
+    }
+
+    /**
+     * @param platform
+     * HEIGHT - height of screen
+     * @return boolean
+     */
+    private boolean isUnderScreen(Platform platform){
+        return gameRoot.getTranslateY() + platform.getTranslateY() > HEIGHT;
     }
 
     public static void main(String[] args) {
