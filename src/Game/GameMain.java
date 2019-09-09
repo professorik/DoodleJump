@@ -46,6 +46,7 @@ public class GameMain extends Application {
     private double platformsX;
     private double platformsY;
     private double distans;
+    public static boolean jp;
     //UI
     private Button buttonRestart;
     private Label scoreLose;
@@ -186,13 +187,20 @@ public class GameMain extends Application {
                 //Скорость падения
                // System.out.println((new Date().getTime() - time.getTime())/50);
                 bird.velocity = bird.velocity.add(0 , 0.3);
+                jp = false;
             }
             if (flag1) {
                 //Движение влево
                 bird.velocity = bird.velocity.add(-speedH, 0);
+                this.remove(bird.rectangle);
+                bird.rectangle = new ImageView(new Image("/resources/temp1406587188_2.png" , 60 , 80 , true , true , false));
+                bird.getChildren().addAll(bird.rectangle);
             }else if (flag2){
                 //Движение вправо
                 bird.velocity = bird.velocity.add(speedH, 0);
+                this.remove(bird.rectangle);
+                bird.rectangle = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
+                bird.getChildren().addAll(bird.rectangle);
             }else {
                 //TODO: настроить коеффициент "затухания" объекта
                 bird.velocity = new Point2D(bird.velocity.getX() / 1.05, bird.velocity.getY());
@@ -204,6 +212,9 @@ public class GameMain extends Application {
             label.setText("" + (int)score);
             label.setTranslateX(WIDTH/2 - 10 * label.getText().length());
         }
+    }
+
+    private void remove(ImageView rectangle) {
     }
 
     AnimationTimer menuAnim;

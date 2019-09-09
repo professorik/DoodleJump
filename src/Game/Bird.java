@@ -10,7 +10,7 @@ import java.util.Date;
 public class Bird extends Pane {
 
     public Point2D velocity;
-    private ImageView rectangle;
+    public ImageView rectangle;
 
     //TODO: доделать скелет
     public Bird() {
@@ -20,6 +20,8 @@ public class Bird extends Pane {
         rectangle = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
         getChildren().addAll(rectangle);
     }
+
+
 
     public ImageView getRectangle() {
         return rectangle;
@@ -50,7 +52,7 @@ public class Bird extends Pane {
             }
             for (Platform platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
-                    if (this.getTranslateY() < platform.getTranslateY() - 40) {
+                    if (this.getTranslateY() < platform.getTranslateY() - 40 && GameMain.jp == false) {
                         setTranslateY(getTranslateY() - 1);
                        // jump();
                     }
@@ -62,5 +64,6 @@ public class Bird extends Pane {
     public void jump() {
         velocity = new Point2D(0, -15);
         GameMain.time = new Date();
+        GameMain.jp = true;
     }
 }
