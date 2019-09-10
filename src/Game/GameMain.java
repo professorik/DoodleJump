@@ -71,24 +71,20 @@ public class GameMain extends Application {
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/style.css").toExternalForm());
 
         scene.setOnMouseClicked(event -> bird.jump());
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.A){
-                    flag1 = true; flag2 = false;
-                }else if (event.getCode() == KeyCode.D){
-                    flag2 = true; flag1 = false;
-                }else if (event.getCode() == KeyCode.SPACE){
-                    bird.jump();
-                }
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.A){
+                flag1 = true; flag2 = false;
+                bird.rectangle.setImage(new Image("/resources/player_2.png" , 60 , 80 , true , true , false));
+            }else if (event.getCode() == KeyCode.D){
+                flag2 = true; flag1 = false;
+                bird.rectangle.setImage(new Image("/resources/player_1.png", 60 , 80 , true , true , false));
+            }else if (event.getCode() == KeyCode.SPACE){
+                bird.jump();
             }
         });
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                flag1 = false;
-                flag2 = false;
-            }
+        scene.setOnKeyReleased(event -> {
+            flag1 = false;
+            flag2 = false;
         });
 
         primaryStage.setResizable(false);
@@ -192,13 +188,9 @@ public class GameMain extends Application {
             if (flag1) {
                 //Движение влево
                 bird.velocity = bird.velocity.add(-speedH, 0);
-                this.remove(bird.rectangle);
-                bird.rectangle.setImage(new Image("/resources/player_2.png" , 60 , 80 , true , true , false));
             }else if (flag2){
                 //Движение вправо
                 bird.velocity = bird.velocity.add(speedH, 0);
-                this.remove(bird.rectangle);
-                bird.rectangle.setImage(new Image("/resources/player_1.png", 60 , 80 , true , true , false));
             }else {
                 //TODO: настроить коеффициент "затухания" объекта
                 bird.velocity = new Point2D(bird.velocity.getX() / 1.05, bird.velocity.getY());
