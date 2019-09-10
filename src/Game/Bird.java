@@ -33,8 +33,8 @@ public class Bird extends Pane {
             //System.out.println(this.velocity.getY());
             for (Platform platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent()) ) {
-                    if (this.getTranslateY() < platform.getTranslateY() - 40 && value > 2 /* && this.getTranslateX() > platform.getTranslateX()
-                            && this.getTranslateX() < platform.getTranslateX() + platform.imageView.getImage().getWidth()*/) {
+                    if (this.getTranslateY() < platform.getTranslateY() - 40 && value > 2  && this.getTranslateX() + 30 > platform.getTranslateX()
+                            && this.getTranslateX() < platform.getTranslateX() + 70) {
                         //setTranslateY(getTranslateY() - 1);
                         jump();
                     }
