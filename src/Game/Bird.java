@@ -1,6 +1,7 @@
 package Game;
 
 import Game.Platforms.BreakingPlatform;
+import Game.Platforms.IcePlatform;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,8 +39,12 @@ public class Bird extends Pane {
                         //setTranslateY(getTranslateY() - 1);
                         if (platform instanceof BreakingPlatform){
                             ((BreakingPlatform) platform).breakPlatform();
-                        }else
-                        jump();
+                        }else if (platform instanceof IcePlatform){
+                            ((IcePlatform) platform).breakPlatform();
+                            jump();
+                        }else {
+                            jump();
+                        }
                     }
                 }
             }
