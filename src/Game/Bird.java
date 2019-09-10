@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Platforms.BreakingPlatform;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,12 +31,14 @@ public class Bird extends Pane {
     public void moveY(int value) {
         boolean downMove = value > 0 ? true : false;
         for (int i = 0; i < Math.abs(value); i++) {
-            //System.out.println(this.velocity.getY());
-            for (Platform platform : GameMain.platforms) {
+            for (PlatformPrototype platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent()) ) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40 && value > 2  && this.getTranslateX() + 30 > platform.getTranslateX()
                             && this.getTranslateX() < platform.getTranslateX() + 70) {
                         //setTranslateY(getTranslateY() - 1);
+                        if (platform instanceof BreakingPlatform){
+                            ((BreakingPlatform) platform).breakPlatform();
+                        }else
                         jump();
                     }
                 }
@@ -50,11 +53,10 @@ public class Bird extends Pane {
             if (getTranslateX() < -3){
                 setTranslateX(790 + getTranslateX());
             }
-            for (Platform platform : GameMain.platforms) {
+            for (PlatformPrototype platform : GameMain.platforms) {
                 if (this.getBoundsInParent().intersects(platform.getBoundsInParent())) {
                     if (this.getTranslateY() < platform.getTranslateY() - 40 && GameMain.jp == false) {
                         setTranslateY(getTranslateY() - 1);
-                       // jump();
                     }
                 }
             }
