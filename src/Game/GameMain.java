@@ -87,6 +87,7 @@ public class GameMain extends Application {
             flag2 = false;
         });
 
+        primaryStage.getIcons().add(new Image("/resources/Doodle_jump_icon.png"));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Doodle Jump");
         primaryStage.setScene(scene);
@@ -232,8 +233,10 @@ public class GameMain extends Application {
             scene.setOnKeyPressed(event1 -> {
                 if (event1.getCode() == KeyCode.A){
                     flag1 = true; flag2 = false;
+                    bird.rectangle.setImage(new Image("/resources/player_2.png" , 60 , 80 , true , true , false));
                 }else if (event1.getCode() == KeyCode.D){
                     flag2 = true; flag1 = false;
+                    bird.rectangle.setImage(new Image("/resources/player_1.png", 60 , 80 , true , true , false));
                 }else if (event1.getCode() == KeyCode.SPACE){
                     bird.jump();
                 }
