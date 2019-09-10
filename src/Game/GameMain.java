@@ -144,7 +144,7 @@ public class GameMain extends Application {
     }
 
     public void update(){
-        //clearPlatfroms();
+        clearPlatfroms();
 
         if (new Date().getTime() - time.getTime() > 1500){
             //TODO: все, что при лузе
@@ -193,14 +193,12 @@ public class GameMain extends Application {
                 //Движение влево
                 bird.velocity = bird.velocity.add(-speedH, 0);
                 this.remove(bird.rectangle);
-                bird.rectangle = new ImageView(new Image("/resources/temp1406587188_2.png" , 60 , 80 , true , true , false));
-                bird.getChildren().addAll(bird.rectangle);
+                bird.rectangle.setImage(new Image("/resources/player_2.png" , 60 , 80 , true , true , false));
             }else if (flag2){
                 //Движение вправо
                 bird.velocity = bird.velocity.add(speedH, 0);
                 this.remove(bird.rectangle);
-                bird.rectangle = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
-                bird.getChildren().addAll(bird.rectangle);
+                bird.rectangle.setImage(new Image("/resources/player_1.png", 60 , 80 , true , true , false));
             }else {
                 //TODO: настроить коеффициент "затухания" объекта
                 bird.velocity = new Point2D(bird.velocity.getX() / 1.05, bird.velocity.getY());

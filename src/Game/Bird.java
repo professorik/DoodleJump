@@ -17,7 +17,7 @@ public class Bird extends Pane {
         velocity = new Point2D(0, 0);
         setTranslateX(370);
         setTranslateY(670);
-        rectangle = new ImageView(new Image("/resources/temp1406587188.png" , 60 , 80 , true , true , false));
+        rectangle = new ImageView(new Image("/resources/player_1.png", 60 , 80 , true , true , false));
         getChildren().addAll(rectangle);
     }
 
